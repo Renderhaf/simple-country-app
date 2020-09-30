@@ -1,13 +1,13 @@
 version: "3"
 
 services: 
-    # web:
-    #     build: "./web/"
-    #     volumes: 
-    #         - ./web:/app
+    web:
+        build: "./web/"
+        volumes: 
+            - ./web:/app
 
-    #     ports: 
-    #         - 80:8080
+        ports: 
+            - 80:8080
 
     api:
         build: "./backend/"

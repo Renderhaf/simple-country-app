@@ -45,3 +45,8 @@ class MySQLDatabaseManager():
         sql_query = "SELECT * FROM countries"
         self.cursor.execute(sql_query)
         return self.cursor.fetchall()
+
+    def get_titles(self)->list:
+        sql_query = "DESCRIBE countries"
+        self.cursor.execute(sql_query)
+        return list(zip(*self.cursor.fetchall()))[0]

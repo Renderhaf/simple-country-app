@@ -22,8 +22,11 @@ if db.count_rows('countries') == 0:
         db.insert_country("countries", country["name"], country["capital"], country["population"], country["area"])
 
 @app.route("/countries", methods=['GET'])
-def main():
-    return jsonify(db.get_all_countries())
+def main(response):
+    data = []
+    data.append(db.get_titles())
+    data.extend(db.get_all_countries())
+    return jsonify(data)
 
 
 if __name__ == "__main__":
