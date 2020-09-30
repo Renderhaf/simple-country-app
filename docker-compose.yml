@@ -16,8 +16,8 @@ services:
         ports:
             - 5000:5000
         environment: 
-            DB_PASSWORD: pass123
-        links: 
+            DB_PASSWORD: R00t+
+        depends_on: 
             - db
 
 
@@ -26,11 +26,20 @@ services:
         ports:
             - 3306:3306
         volumes:
-            - ./database:/var/lib/mysql
+            - ./database/sqldata:/var/lib/mysql
+            - ./database/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+
         environment:
+            MYSQL_ROOT_HOST: "%"
             MYSQL_ROOT_PASSWORD: R00t+
             MYSQL_USER: api
             MYSQL_PASSWORD: pass123
+
+        healthcheck:
+            test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
+            timeout: 20s
+            retries: 20
+
 
 
 

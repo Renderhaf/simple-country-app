@@ -1,17 +1,18 @@
 from flask import Flask, request
-import mysql.connector as mysql
 import os
-import time
+from mysql_connector import MySQLDatabaseManager
 
 app = Flask(__name__)
 
-time.sleep(5)
-db = mysql.connect(
-    host="db",
-    user="api",
-    port="3306",
-    password=os.environ.get("DB_PASSWORD"),
-)
+db_config = {
+    "host":"db",
+    "user":"root",
+    "port":"3306",
+    "password":os.environ.get("DB_PASSWORD"),
+    "database":'database1'
+}
+db = MySQLDatabaseManager(db_config)
+
 
 @app.route("/")
 def main():
