@@ -1,13 +1,13 @@
 version: "3"
 
 services: 
-    web:
-        build: "./web/"
-        volumes: 
-            - ./web:/app
+    # web:
+    #     build: "./web/"
+    #     volumes: 
+    #         - ./web:/app
 
-        ports: 
-            - 80:8080
+    #     ports: 
+    #         - 80:8080
 
     api:
         build: "./backend/"
@@ -18,7 +18,8 @@ services:
         environment: 
             DB_PASSWORD: R00t+
         depends_on: 
-            - db
+            db:
+                condition: service_healthy
 
 
     db:
@@ -37,7 +38,7 @@ services:
 
         healthcheck:
             test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
-            timeout: 20s
+            timeout: 45s
             retries: 20
 
 
