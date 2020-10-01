@@ -23,16 +23,8 @@ export default new Vuex.Store({
   
   actions: {
     updateFromAPI(state){
-        console.log("FETCHING")
         fetch('/api/countries')
-        .then(response => {
-            console.log(response);
-            return response
-        })
         .then(response => response.json())
-        .then(response => {
-            return response
-        })
         .then(
             resp => {
                 state.commit('setColomnNames', resp[0]);
