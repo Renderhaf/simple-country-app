@@ -1,4 +1,4 @@
-# vue-database-test #
+# Simple Country App #
 This is a little app that uses docker-compose to show a list of countries and some info about them
 
 ## Running the app locally ##
