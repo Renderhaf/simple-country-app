@@ -24,7 +24,7 @@ export default new Vuex.Store({
   actions: {
     updateFromAPI(state){
         console.log("FETCHING")
-        fetch(window.location.href.slice(0,-1) + ':5000' + '/countries')
+        fetch('/api/countries')
         .then(response => {
             console.log(response);
             return response
